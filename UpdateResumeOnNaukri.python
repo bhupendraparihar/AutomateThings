@@ -1,0 +1,42 @@
+from splinter import Browser
+from time import sleep
+
+browser = Browser('chrome')
+#with Browser('chrome') as browser:
+# Visit URL
+url = "https://www.naukri.com/"
+browser.visit(url)
+
+# click on the login button
+loginButton = browser.find_by_id('login_Layer')
+loginButton.click()
+
+# fill the query form with our search term
+browser.find_by_id('eLogin').fill('bhupendrasparihar@gmail.com')
+browser.find_by_id('pLogin').fill('Counter@123')
+
+# find the search button on the page and click it
+button = browser.find_by_css('#lgnFrm .blueBtn')
+button.click()
+sleep(3)
+
+# click on attach resume
+button = browser.find_by_css('#leftNav_updateProfile ul li a:nth-child(4)')
+button.click()
+
+# click upload new resume
+button = browser.find_by_id('uploadLink')
+button.click()
+
+# upload a new resume
+browser.find_by_id('attachCV').clear()
+browser.find_by_id('attachCV').fill('C:/Users/pariharb/Desktop/Python Automate/Resume.pdf')
+# browser.attach_file(fileuploadElementName,'C:\Users\pariharb\Desktop\Python Automate\Resume.pdf')
+sleep(5)
+
+# click save after resume upload
+button = browser.find_by_xpath('//*[@id="editForm"]/div[7]/button')
+button.click()
+sleep(3)
+
+browser.quit()
